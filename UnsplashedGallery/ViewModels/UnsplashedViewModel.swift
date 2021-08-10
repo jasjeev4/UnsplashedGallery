@@ -18,7 +18,7 @@ final class UnsplashedViewModel: ObservableObject {
     private var baseURL = "https://api.unsplash.com/search/photos?page=1&per_page=50&client_id=" + accessKey + "&query="
     
     init() {
-        self.searchText = ""
+        self.searchText = "Coffee"
         self.prevTypeTime = 0
         self.ignoreType = false
     }

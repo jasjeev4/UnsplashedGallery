@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct SheetView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -31,52 +32,105 @@ struct ContentView: View {
     var searchGray = Color(red: 60 / 255, green: 60 / 255, blue: 67 / 255, opacity: 0.6)
 
     var body: some View {
-        VStack {
-            Group {
-                Text("ACV Photo Challenge")
-                    .font(.system(size: 17))
-                    .fontWeight(.medium)
-                    .padding(.top, 40)
-                    .padding(.bottom, 10)
-                
-                HStack{
-                    Group{
-                        Image(systemName: "magnifyingglass")
-                            .padding([.leading, .trailing], 8)
-                            .foregroundColor(imageGray)
-                        
-                        TextField("Search", text: $searchInput)
-                            .onChange(of: searchInput) {
-                                viewModel.onSearchChange($0)
+        GeometryReader { geo in
+            VStack {
+                Group {
+                    Text("ACV Photo Challenge")
+                        .font(.system(size: 17))
+                        .fontWeight(.medium)
+                        .padding(.top, 40)
+                        .padding(.bottom, 10)
+                    
+                    HStack{
+                        Group{
+                            Image(systemName: "magnifyingglass")
+                                .padding([.leading, .trailing], 8)
+                                .foregroundColor(imageGray)
+                            
+                            TextField("Search", text: $searchInput)
+                                .onChange(of: searchInput) {
+                                    viewModel.onSearchChange($0)
+                                }
+                                .foregroundColor(searchGray)
+                            
+                            Image(systemName: "mic.fill")
+                                .padding([.leading, .trailing], 8)
+                                .foregroundColor(imageGray)
+                        }.padding([.top, .bottom], 10)
+                    }.background(lightGrayOpaque)
+                     .cornerRadius(10)
+                    
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(viewModel.images) { image in
+                                ZStack {
+        //                            Rectangle()
+        //                                .fill(Color.yellow)
+                                    
+                                    ImageRow(unsplashedImage: image)
+                                        .onTapGesture {
+                                            self.viewModel.cardTapped(image.id)
+                                        }
+                                }.cornerRadius(20)
+                                .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
                             }
-                            .foregroundColor(searchGray)
-                        
-                        Image(systemName: "mic.fill")
-                            .padding([.leading, .trailing], 8)
-                            .foregroundColor(imageGray)
-                    }.padding([.top, .bottom], 10)
-                }.background(lightGrayOpaque)
-                 .cornerRadius(10)
-            }
-            
-            List(self.viewModel.images) { image in
-                ImageRow(unsplashedImage: image)
-                    .onTapGesture {
-                        self.viewModel.cardTapped(image.id)
+                        }
                     }
+                    
+//                    List(self.viewModel.images) { image in
+//                        ZStack {
+//                            ImageRow(unsplashedImage: image)
+//                                .onTapGesture {
+//                                    self.viewModel.cardTapped(image.id)
+//                                }
+//                        }.cornerRadius(20)
+//                        .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
+//                    }
+//                     .listStyle(SidebarListStyle())
+//                     .padding(.leading, -20)
+                }
+                
+//                    ForEach(viewModel.images, id: \.self) { imageRow in
+//                        ZStack {
+//                            URLImage(URL(string: imageRow.imageURL)!) {
+//                                // This view is displayed before download starts
+//                                EmptyView()
+//                            } inProgress: { progress in
+//                                // Display progress
+//                                EmptyView()
+//                            } failure: { error, retry in
+//                                // Display error and retry button
+//                                Image("no-image")
+//                            } content: { image in
+//                                // Downloaded image
+//                                ZStack {
+//                                    image
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fill)
+//                                        .clipped()
+//                                }
+//                                .cornerRadius(0)
+//                                .frame(width: CGFloat(geo.size.width - 10.0), height: CGFloat(216.0))
+//                            }
+//                        }.frame(width: CGFloat(geo.size.width - 10.0), height: CGFloat(216.0))
+//                        .padding(.bottom, 100)
             }
-            
-            Spacer()
         
-            Button("Show Sheet") {
-                showingSheet.toggle()
-            }
-            
-            Spacer()
+//            
+//            Spacer()
+//        
+//            Button("Show Sheet") {
+//                showingSheet.toggle()
+//            }
+//            
+//            Spacer()
         }
         .padding([.leading, .trailing], 15)
         .sheet(isPresented: $showingSheet) {
             SheetView()
+        }
+        .onAppear{
+            self.viewModel.executeSearch()  
         }
     }   
 }

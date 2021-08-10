@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UnsplashedImage: Identifiable {
+struct UnsplashedImage: Identifiable, Hashable {
     let id = UUID()
     var imageURL: String
     var description: String
