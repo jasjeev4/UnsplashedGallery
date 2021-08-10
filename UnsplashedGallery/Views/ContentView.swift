@@ -59,6 +59,13 @@ struct ContentView: View {
                  .cornerRadius(10)
             }
             
+            List(self.viewModel.images) { image in
+                ImageRow(unsplashedImage: image)
+                    .onTapGesture {
+                        self.viewModel.cardTapped(image.id)
+                    }
+            }
+            
             Spacer()
         
             Button("Show Sheet") {
