@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8DB689726C31EDF00882231 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB689626C31EDF00882231 /* ImageView.swift */; };
 		C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCAD26C2197500048B22 /* AppDelegate.swift */; };
 		C8ECDCB026C2197500048B22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCAF26C2197500048B22 /* SceneDelegate.swift */; };
 		C8ECDCB226C2197500048B22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCB126C2197500048B22 /* ContentView.swift */; };
@@ -18,6 +19,8 @@
 		C8ECDCE126C2F89400048B22 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCE026C2F89400048B22 /* API.swift */; };
 		C8ECDCEA26C2FAB200048B22 /* UnsplashedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCE926C2FAB200048B22 /* UnsplashedModel.swift */; };
 		C8ECDCEC26C2FAC700048B22 /* UnsplashedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCEB26C2FAC700048B22 /* UnsplashedViewModel.swift */; };
+		C8ECDCEF26C30C0C00048B22 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */; };
+		C8ECDCF226C30C7000048B22 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCF126C30C7000048B22 /* ImageRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C8DB689626C31EDF00882231 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		C8ECDCAA26C2197500048B22 /* UnsplashedGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashedGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8ECDCAD26C2197500048B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8ECDCAF26C2197500048B22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 		C8ECDCE026C2F89400048B22 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		C8ECDCE926C2FAB200048B22 /* UnsplashedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashedModel.swift; sourceTree = "<group>"; };
 		C8ECDCEB26C2FAC700048B22 /* UnsplashedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashedViewModel.swift; sourceTree = "<group>"; };
+		C8ECDCF126C30C7000048B22 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8ECDCEF26C30C0C00048B22 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8DB689526C31ED000882231 /* ImageHelper */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB689626C31EDF00882231 /* ImageView.swift */,
+			);
+			path = ImageHelper;
+			sourceTree = "<group>";
+		};
 		C8ECDCA126C2197400048B22 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +170,7 @@
 		C8ECDCE226C2FA5000048B22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C8ECDCF026C30C5E00048B22 /* Home */,
 				C8ECDCB126C2197500048B22 /* ContentView.swift */,
 			);
 			path = Views;
@@ -177,6 +192,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C8ECDCF026C30C5E00048B22 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C8DB689526C31ED000882231 /* ImageHelper */,
+				C8ECDCF126C30C7000048B22 /* ImageRow.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,6 +217,9 @@
 			dependencies = (
 			);
 			name = UnsplashedGallery;
+			packageProductDependencies = (
+				C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */,
+			);
 			productName = UnsplashedGallery;
 			productReference = C8ECDCAA26C2197500048B22 /* UnsplashedGallery.app */;
 			productType = "com.apple.product-type.application";
@@ -264,6 +291,9 @@
 				Base,
 			);
 			mainGroup = C8ECDCA126C2197400048B22;
+			packageReferences = (
+				C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = C8ECDCAB26C2197500048B22 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -307,7 +337,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8ECDCF226C30C7000048B22 /* ImageRow.swift in Sources */,
 				C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */,
+				C8DB689726C31EDF00882231 /* ImageView.swift in Sources */,
 				C8ECDCB026C2197500048B22 /* SceneDelegate.swift in Sources */,
 				C8ECDCE126C2F89400048B22 /* API.swift in Sources */,
 				C8ECDCEC26C2FAC700048B22 /* UnsplashedViewModel.swift in Sources */,
@@ -641,6 +673,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C8ECDCA226C2197400048B22 /* Project object */;
 }
