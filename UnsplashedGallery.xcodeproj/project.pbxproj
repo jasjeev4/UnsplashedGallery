@@ -15,6 +15,7 @@
 		C8ECDCBA26C2197800048B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8ECDCB826C2197800048B22 /* LaunchScreen.storyboard */; };
 		C8ECDCC526C2197800048B22 /* UnsplashedGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCC426C2197800048B22 /* UnsplashedGalleryTests.swift */; };
 		C8ECDCD026C2197800048B22 /* UnsplashedGalleryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCCF26C2197800048B22 /* UnsplashedGalleryUITests.swift */; };
+		C8ECDCE126C2F89400048B22 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCE026C2F89400048B22 /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C8ECDCCB26C2197800048B22 /* UnsplashedGalleryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashedGalleryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8ECDCCF26C2197800048B22 /* UnsplashedGalleryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashedGalleryUITests.swift; sourceTree = "<group>"; };
 		C8ECDCD126C2197800048B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8ECDCE026C2F89400048B22 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		C8ECDCAC26C2197500048B22 /* UnsplashedGallery */ = {
 			isa = PBXGroup;
 			children = (
+				C8ECDCDD26C2F83100048B22 /* API */,
 				C8ECDCAD26C2197500048B22 /* AppDelegate.swift */,
 				C8ECDCAF26C2197500048B22 /* SceneDelegate.swift */,
 				C8ECDCB126C2197500048B22 /* ContentView.swift */,
@@ -134,6 +137,14 @@
 				C8ECDCD126C2197800048B22 /* Info.plist */,
 			);
 			path = UnsplashedGalleryUITests;
+			sourceTree = "<group>";
+		};
+		C8ECDCDD26C2F83100048B22 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C8ECDCE026C2F89400048B22 /* API.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 			files = (
 				C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */,
 				C8ECDCB026C2197500048B22 /* SceneDelegate.swift in Sources */,
+				C8ECDCE126C2F89400048B22 /* API.swift in Sources */,
 				C8ECDCB226C2197500048B22 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
