@@ -21,8 +21,9 @@ struct SheetView: View {
 }
 
 struct ContentView: View {
-    @State private var showingSheet = false
+    @StateObject private var viewModel = UnsplashedViewModel()
     
+    @State private var showingSheet = false
     @State var searchInput: String = ""
     
     var lightGrayOpaque = Color(red: 118 / 255, green: 118 / 255, blue: 128 / 255, opacity: 0.12)
@@ -45,6 +46,9 @@ struct ContentView: View {
                             .foregroundColor(imageGray)
                         
                         TextField("Search", text: $searchInput)
+                            .onChange(of: searchInput) {
+                                viewModel.onSearchChange($0)
+                            }
                             .foregroundColor(searchGray)
                         
                         Image(systemName: "mic.fill")
