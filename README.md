@@ -1,6 +1,7 @@
 # UnsplashedGallery
 
-This project displays images from Unsplashed using the API. The app supports voice search. 
+This project displays images from Unsplashed using the API. The app supports voice search.
+For results where the API does have description for an image the app displays "Unspecified" as the description.
 
 ## Running the project
 
