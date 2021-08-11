@@ -6,14 +6,37 @@
 //
 
 import SwiftUI
+import URLImage
 
 // A view that shows the data for one Image.
 struct ImageRow: View {
     var unsplashedImage: UnsplashedImage
 
     var body: some View {
-        HStack {
-            ImageView(withURL: unsplashedImage.imageURL)
-        }
+       GeometryReader { geo in
+           HStack {
+                URLImage(URL(string: unsplashedImage.imageURL)!) {
+                    // This view is displayed before download starts
+                    EmptyView()
+                } inProgress: { progress in
+                    // Display progress
+                    EmptyView()
+                } failure: { error, retry in
+                    // Display error and retry button
+                    Image("no-image")
+                } content: { image in
+                    // Downloaded image
+                    ZStack {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                    }
+                    .cornerRadius(0)
+                    .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0))
+                }
+           }
+       }
     }
 }
+

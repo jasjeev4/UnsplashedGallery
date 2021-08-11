@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C8DB689726C31EDF00882231 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DB689626C31EDF00882231 /* ImageView.swift */; };
+		C8DB689A26C3325600882231 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = C8DB689926C3325600882231 /* URLImageStore */; };
+		C8DB689C26C3325600882231 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C8DB689B26C3325600882231 /* URLImage */; };
 		C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCAD26C2197500048B22 /* AppDelegate.swift */; };
 		C8ECDCB026C2197500048B22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCAF26C2197500048B22 /* SceneDelegate.swift */; };
 		C8ECDCB226C2197500048B22 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCB126C2197500048B22 /* ContentView.swift */; };
@@ -67,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8DB689A26C3325600882231 /* URLImageStore in Frameworks */,
+				C8DB689C26C3325600882231 /* URLImage in Frameworks */,
 				C8ECDCEF26C30C0C00048B22 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +223,8 @@
 			name = UnsplashedGallery;
 			packageProductDependencies = (
 				C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */,
+				C8DB689926C3325600882231 /* URLImageStore */,
+				C8DB689B26C3325600882231 /* URLImage */,
 			);
 			productName = UnsplashedGallery;
 			productReference = C8ECDCAA26C2197500048B22 /* UnsplashedGallery.app */;
@@ -293,6 +299,7 @@
 			mainGroup = C8ECDCA126C2197400048B22;
 			packageReferences = (
 				C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = C8ECDCAB26C2197500048B22 /* Products */;
 			projectDirPath = "";
@@ -675,6 +682,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 		C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -686,6 +701,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C8DB689926C3325600882231 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+		C8DB689B26C3325600882231 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
 		C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

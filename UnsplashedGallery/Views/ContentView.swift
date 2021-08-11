@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct SheetView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -31,52 +32,84 @@ struct ContentView: View {
     var searchGray = Color(red: 60 / 255, green: 60 / 255, blue: 67 / 255, opacity: 0.6)
 
     var body: some View {
-        VStack {
-            Group {
-                Text("ACV Photo Challenge")
-                    .font(.system(size: 17))
-                    .fontWeight(.medium)
-                    .padding(.top, 40)
-                    .padding(.bottom, 10)
-                
-                HStack{
-                    Group{
-                        Image(systemName: "magnifyingglass")
-                            .padding([.leading, .trailing], 8)
-                            .foregroundColor(imageGray)
-                        
-                        TextField("Search", text: $searchInput)
-                            .onChange(of: searchInput) {
-                                viewModel.onSearchChange($0)
+        GeometryReader { geo in
+            VStack {
+                Group {
+                    Text("ACV Photo Challenge")
+                        .font(.system(size: 17))
+                        .fontWeight(.medium)
+                        .padding(.top, 40)
+                        .padding(.bottom, 10)
+                    
+                    HStack{
+                        Group{
+                            Image(systemName: "magnifyingglass")
+                                .padding([.leading, .trailing], 8)
+                                .foregroundColor(imageGray)
+                            
+                            TextField("Search", text: $searchInput)
+                                .onChange(of: searchInput) {
+                                    viewModel.onSearchChange($0)
+                                }
+                                .foregroundColor(searchGray)
+                            
+                            Image(systemName: "mic.fill")
+                                .padding([.leading, .trailing], 8)
+                                .foregroundColor(imageGray)
+                        }.padding([.top, .bottom], 10)
+                    }.background(lightGrayOpaque)
+                     .cornerRadius(10)
+                    
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(viewModel.images) { image in
+                                ZStack {
+        //                            Rectangle()
+        //                                .fill(Color.yellow)
+                                    VStack {
+                                        HStack {
+                                            Text(image.description)
+                                                .font(.system(size: 24))
+                                                .fontWeight(.medium)
+                                                .foregroundColor(.white)
+                                                .offset(x: 16, y: 29)
+                                            
+                                            Spacer()
+                                        }
+                                        Spacer ()
+                                        
+                                    }.zIndex(1)
+                                    
+                                    ImageRow(unsplashedImage: image)
+                                        .zIndex(0)
+                                }.cornerRadius(20)
+                                .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
+                                .padding(.bottom, 15)
+                                .onTapGesture {
+                                    self.viewModel.cardTapped(image.id)
+                                }
                             }
-                            .foregroundColor(searchGray)
-                        
-                        Image(systemName: "mic.fill")
-                            .padding([.leading, .trailing], 8)
-                            .foregroundColor(imageGray)
-                    }.padding([.top, .bottom], 10)
-                }.background(lightGrayOpaque)
-                 .cornerRadius(10)
+                        }
+                    }.padding(.top, 10)
+                }
+                
             }
-            
-            List(self.viewModel.images) { image in
-                ImageRow(unsplashedImage: image)
-                    .onTapGesture {
-                        self.viewModel.cardTapped(image.id)
-                    }
-            }
-            
-            Spacer()
         
-            Button("Show Sheet") {
-                showingSheet.toggle()
-            }
-            
-            Spacer()
+//            
+//            Spacer()
+//        
+//            Button("Show Sheet") {
+//                showingSheet.toggle()
+//            }
+//            
+//            Spacer()
         }
         .padding([.leading, .trailing], 15)
         .sheet(isPresented: $showingSheet) {
             SheetView()
+        }
+        .onAppear{
+            self.viewModel.executeSearch()  
         }
     }   
 }

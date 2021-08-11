@@ -18,7 +18,7 @@ final class UnsplashedViewModel: ObservableObject {
     private var baseURL = "https://api.unsplash.com/search/photos?page=1&per_page=50&client_id=" + accessKey + "&query="
     
     init() {
-        self.searchText = ""
+        self.searchText = "Coffee"
         self.prevTypeTime = 0
         self.ignoreType = false
     }
@@ -91,11 +91,14 @@ final class UnsplashedViewModel: ObservableObject {
         for (_, imageData):(String, JSON) in result {
             // create a new UnsplashedImage object
 
-            let description = imageData["description"].stringValue == "" ? "Unspecifed": imageData["description"].stringValue
+            let longDescription = imageData["description"].stringValue
+            var shortDescription = String(longDescription.prefix(17))
+            shortDescription = longDescription.count>17 ? shortDescription+"..." : shortDescription
+            shortDescription = longDescription == "" ? "Unspecifed": shortDescription
             
             let currentImage = UnsplashedImage(
                 imageURL: imageData["urls"]["regular"].stringValue,
-                description: description,
+                description: shortDescription,
                 profileImgURL: imageData["user"]["profile_image"]["large"].stringValue,
                 first_name: imageData["user"]["first_name"].stringValue,
                 last_name: imageData["user"]["last_name"].stringValue,
