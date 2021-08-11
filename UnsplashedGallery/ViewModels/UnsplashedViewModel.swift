@@ -96,8 +96,8 @@ final class UnsplashedViewModel: ObservableObject {
 
             // fix description
             let longDescription = imageData["description"].stringValue
-            var shortDescription = String(longDescription.prefix(17))
-            shortDescription = longDescription.count>17 ? shortDescription+"..." : shortDescription
+            var shortDescription = String(longDescription.prefix(24))
+            shortDescription = longDescription.count>24 ? shortDescription+"..." : shortDescription
             shortDescription = longDescription == "" ? "Unspecifed": shortDescription
             
             // set display name
