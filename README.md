@@ -12,6 +12,8 @@ This project displays images from Unsplashed using the API. The app supports voi
 
 4. At this point Xcode should begin fetching the Swift packages the project depends on.
 
+5. If required update the development team in Xcode: targets -> UnsplashedGallery -> Signing&Capabilities -> Team
+
 5. Now run the project on a device or simulator (iPhone X preferred).
 
 ## File Structure
