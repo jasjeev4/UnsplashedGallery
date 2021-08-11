@@ -1,5 +1,5 @@
 //
-//  ImageRow.swift
+//  SheetImage.swift
 //  UnsplashedGallery
 //
 //  Created by Jasjeev on 8/10/21.
@@ -9,7 +9,7 @@ import SwiftUI
 import URLImage
 
 // A view that shows the data for one Image.
-struct ImageRow: View {
+struct SheetImage: View {
     var unsplashedImage: UnsplashedImage
     @EnvironmentObject  var viewModel: UnsplashedViewModel
 
@@ -33,11 +33,12 @@ struct ImageRow: View {
                     ZStack {
                         image
                             .resizable()
+                            .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
                             .aspectRatio(contentMode: .fill)
                             .clipped()
                     }
                     .cornerRadius(0)
-                    .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0))
+                    .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
                 }
            }
        }

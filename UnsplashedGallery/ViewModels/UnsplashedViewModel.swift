@@ -10,6 +10,8 @@ import SwiftyJSON
 
 final class UnsplashedViewModel: ObservableObject {
     @Published public var images = [UnsplashedImage]()
+    @Published public var sheetImage: UnsplashedImage?
+    @Published public var showingSheet = false
     
     private var searchText: String
     private var prevTypeTime: Double
@@ -127,6 +129,12 @@ final class UnsplashedViewModel: ObservableObject {
         for image in images {
             if(image.id == id) {
                 print("Tapped: " + image.description)
+                
+                // populate sheet
+                sheetImage = image
+                
+                showingSheet = true
+                
                 return
             }
         }

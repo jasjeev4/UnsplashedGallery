@@ -16,3 +16,4 @@ struct UnsplashedImage: Identifiable {
     var username: String
     var likes: Int
 }
+

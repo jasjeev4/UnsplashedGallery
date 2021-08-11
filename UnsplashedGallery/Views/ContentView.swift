@@ -10,14 +10,35 @@ import URLImage
 
 struct SheetView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject  var viewModel: UnsplashedViewModel
 
     var body: some View {
-        Button("Press to dismiss") {
-            presentationMode.wrappedValue.dismiss()
+        GeometryReader { geo in
+            VStack(spacing: 5){
+                Text(viewModel.sheetImage?.description ?? "Undefined")
+                    .font(.system(size: 17))
+                    .fontWeight(.medium)
+                    .padding(.top, 15)
+                
+                Text(viewModel.sheetImage?.displayName ?? "Undefined")
+                    .font(.system(size: 34))
+                    .fontWeight(.semibold)
+                    .padding(.leading, 16)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                SheetImage(unsplashedImage: viewModel.sheetImage ?? UnsplashedImage(id: UUID(), imageURL: "", description: "", profileImgURL: "", displayName: "", username: "", likes: 0))
+                    .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
+                    .environmentObject(viewModel)
+            }
         }
-        .font(.title)
-        .padding()
-        .background(Color.black)
+            
+//
+//        Button("Press to dismiss") {
+//            presentationMode.wrappedValue.dismiss()
+//        }
+//        .font(.title)
+//        .padding()
+//        .background(Color.black)
     }
 }
 
@@ -121,17 +142,9 @@ struct ContentView: View {
                                         }.offset(x: 20, y: -20)
                                     }.zIndex(2)
                                     
-                                    ImageRow(unsplashedImage: cardImage)
+                                    CardImage(unsplashedImage: cardImage)
                                         .environmentObject(viewModel)
                                         .zIndex(1)
-                                    
-                                    //  hacky fix for tap
-//                                    Rectangle()
-//                                        .foregroundColor(.yellow)
-//                                        .zIndex(10)
-                                        
-                                        // .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0))
-                                    
                                 }
                                 .cornerRadius(20)
                                 .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
@@ -156,8 +169,8 @@ struct ContentView: View {
 //            Spacer()
         }
         .padding([.leading, .trailing], 15)
-        .sheet(isPresented: $showingSheet) {
-            SheetView()
+        .sheet(isPresented: $viewModel.showingSheet) {
+            SheetView().environmentObject(viewModel)
         }
         .onAppear{
             self.viewModel.executeSearch()  
