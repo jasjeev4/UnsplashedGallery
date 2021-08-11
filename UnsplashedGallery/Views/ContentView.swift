@@ -66,54 +66,33 @@ struct ContentView: View {
                                 ZStack {
         //                            Rectangle()
         //                                .fill(Color.yellow)
+                                    VStack {
+                                        HStack {
+                                            Text(image.description)
+                                                .font(.system(size: 24))
+                                                .fontWeight(.medium)
+                                                .foregroundColor(.white)
+                                                .offset(x: 16, y: 29)
+                                            
+                                            Spacer()
+                                        }
+                                        Spacer ()
+                                        
+                                    }.zIndex(1)
                                     
                                     ImageRow(unsplashedImage: image)
-                                        .onTapGesture {
-                                            self.viewModel.cardTapped(image.id)
-                                        }
+                                        .zIndex(0)
                                 }.cornerRadius(20)
                                 .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
+                                .padding(.bottom, 15)
+                                .onTapGesture {
+                                    self.viewModel.cardTapped(image.id)
+                                }
                             }
                         }
-                    }
-                    
-//                    List(self.viewModel.images) { image in
-//                        ZStack {
-//                            ImageRow(unsplashedImage: image)
-//                                .onTapGesture {
-//                                    self.viewModel.cardTapped(image.id)
-//                                }
-//                        }.cornerRadius(20)
-//                        .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
-//                    }
-//                     .listStyle(SidebarListStyle())
-//                     .padding(.leading, -20)
+                    }.padding(.top, 10)
                 }
                 
-//                    ForEach(viewModel.images, id: \.self) { imageRow in
-//                        ZStack {
-//                            URLImage(URL(string: imageRow.imageURL)!) {
-//                                // This view is displayed before download starts
-//                                EmptyView()
-//                            } inProgress: { progress in
-//                                // Display progress
-//                                EmptyView()
-//                            } failure: { error, retry in
-//                                // Display error and retry button
-//                                Image("no-image")
-//                            } content: { image in
-//                                // Downloaded image
-//                                ZStack {
-//                                    image
-//                                        .resizable()
-//                                        .aspectRatio(contentMode: .fill)
-//                                        .clipped()
-//                                }
-//                                .cornerRadius(0)
-//                                .frame(width: CGFloat(geo.size.width - 10.0), height: CGFloat(216.0))
-//                            }
-//                        }.frame(width: CGFloat(geo.size.width - 10.0), height: CGFloat(216.0))
-//                        .padding(.bottom, 100)
             }
         
 //            
