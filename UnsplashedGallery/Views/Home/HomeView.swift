@@ -27,8 +27,7 @@ struct HomeView: View {
                         Text("ACV Photo Challenge")
                             .font(.system(size: 17))
                             .fontWeight(.medium)
-                            .padding(.top, 20)
-                            .padding(.bottom, 10)
+                            .padding([.top, .bottom], 10)
                         
                         HStack{
                             Group{
