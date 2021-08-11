@@ -61,14 +61,14 @@ struct ContentView: View {
                      .cornerRadius(10)
                     
                     ScrollView {
-                        LazyVStack {
-                            ForEach(viewModel.images) { image in
+                        LazyVStack(spacing: 20) {
+                            ForEach(viewModel.images) { cardImage in
                                 ZStack {
         //                            Rectangle()
         //                                .fill(Color.yellow)
                                     VStack {
                                         HStack {
-                                            Text(image.description)
+                                            Text(cardImage.description)
                                                 .font(.system(size: 24))
                                                 .fontWeight(.medium)
                                                 .foregroundColor(.white)
@@ -78,15 +78,66 @@ struct ContentView: View {
                                         }
                                         Spacer ()
                                         
-                                    }.zIndex(1)
+                                    }.zIndex(2)
                                     
-                                    ImageRow(unsplashedImage: image)
-                                        .zIndex(0)
-                                }.cornerRadius(20)
+                                    VStack {
+                                        Spacer ()
+                                        
+                                        HStack {
+                                            URLImage(URL(string: cardImage.profileImgURL)!) {
+                                                // This view is displayed before download starts
+                                                EmptyView()
+                                            } inProgress: { progress in
+                                                // Display progress
+                                                EmptyView()
+                                            } failure: { error, retry in
+                                                // Display error and retry button
+                                                Image("no-image")
+                                            } content: { image in
+                                                // Downloaded image
+                                                ZStack {
+                                                    image
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .clipped()
+                                                }
+                                                .cornerRadius(100)
+                                                .frame(width: CGFloat(50.0), height: CGFloat(50.0))
+                                            }
+                                            
+                                            VStack(alignment: .leading) {
+                                                Text(cardImage.displayName)
+                                                    .font(.system(size: 18))
+                                                    .fontWeight(.medium)
+                                                    .foregroundColor(.white)
+                                                
+                                                Text(cardImage.username)
+                                                    .font(.system(size: 14))
+                                                    .fontWeight(.light)
+                                                    .foregroundColor(.white)
+                                            }
+                                            
+                                            Spacer()
+                                        }.offset(x: 20, y: -20)
+                                    }.zIndex(2)
+                                    
+                                    ImageRow(unsplashedImage: cardImage)
+                                        .environmentObject(viewModel)
+                                        .zIndex(1)
+                                    
+                                    //  hacky fix for tap
+//                                    Rectangle()
+//                                        .foregroundColor(.yellow)
+//                                        .zIndex(10)
+                                        
+                                        // .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0))
+                                    
+                                }
+                                .cornerRadius(20)
                                 .frame(width: CGFloat(geo.size.width), height: CGFloat(216.0), alignment: .leading)
-                                .padding(.bottom, 15)
+                                .contentShape(Rectangle())
                                 .onTapGesture {
-                                    self.viewModel.cardTapped(image.id)
+                                    viewModel.cardTapped(cardImage.id)
                                 }
                             }
                         }

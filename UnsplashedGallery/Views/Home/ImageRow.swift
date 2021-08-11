@@ -11,19 +11,23 @@ import URLImage
 // A view that shows the data for one Image.
 struct ImageRow: View {
     var unsplashedImage: UnsplashedImage
+    @EnvironmentObject  var viewModel: UnsplashedViewModel
 
     var body: some View {
        GeometryReader { geo in
            HStack {
                 URLImage(URL(string: unsplashedImage.imageURL)!) {
                     // This view is displayed before download starts
-                    EmptyView()
+                    Rectangle()
+                        .fill(Color.yellow)
                 } inProgress: { progress in
                     // Display progress
-                    EmptyView()
+                    Rectangle()
+                        .fill(Color.yellow)
                 } failure: { error, retry in
                     // Display error and retry button
-                    Image("no-image")
+                    Rectangle()
+                        .fill(Color.red)
                 } content: { image in
                     // Downloaded image
                     ZStack {

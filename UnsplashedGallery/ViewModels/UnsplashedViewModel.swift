@@ -88,21 +88,31 @@ final class UnsplashedViewModel: ObservableObject {
         
         let result = json["results"]
         
+        
         for (_, imageData):(String, JSON) in result {
             // create a new UnsplashedImage object
 
+            // fix description
             let longDescription = imageData["description"].stringValue
             var shortDescription = String(longDescription.prefix(17))
             shortDescription = longDescription.count>17 ? shortDescription+"..." : shortDescription
             shortDescription = longDescription == "" ? "Unspecifed": shortDescription
             
+            // set display name
+            let first_name = imageData["user"]["first_name"].stringValue
+            let last_name = imageData["user"]["last_name"].stringValue
+            let displayName = first_name + " " + String(last_name.prefix(1)) + "."
+            
+            // add '@' to username
+            let atUsername = "@" + imageData["user"]["username"].stringValue
+            
             let currentImage = UnsplashedImage(
+                id: UUID(),
                 imageURL: imageData["urls"]["regular"].stringValue,
                 description: shortDescription,
                 profileImgURL: imageData["user"]["profile_image"]["large"].stringValue,
-                first_name: imageData["user"]["first_name"].stringValue,
-                last_name: imageData["user"]["last_name"].stringValue,
-                username: imageData["user"]["username"].stringValue,
+                displayName: displayName,
+                username: atUsername,
                 likes: imageData["likes"].intValue
             )
             
@@ -114,8 +124,11 @@ final class UnsplashedViewModel: ObservableObject {
     
     
     func cardTapped(_ id: UUID) {
-        if let item = images.first(where: { $0.id == id }) {
-            print("Tapped: " + item.description)
+        for image in images {
+            if(image.id == id) {
+                print("Tapped: " + image.description)
+                return
+            }
         }
     }
 }
