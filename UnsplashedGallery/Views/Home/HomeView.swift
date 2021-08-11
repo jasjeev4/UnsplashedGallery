@@ -24,7 +24,7 @@ struct HomeView: View {
                     Text("ACV Photo Challenge")
                         .font(.system(size: 17))
                         .fontWeight(.medium)
-                        .padding(.top, 40)
+                        .padding(.top, 20)
                         .padding(.bottom, 10)
                     
                     HStack{
@@ -40,12 +40,14 @@ struct HomeView: View {
                                 print("onCommit")
                                 viewModel.executeSearch()
                             }
+                            .font(.system(size: 17))
                             .foregroundColor(searchGray)
                             
                             Image(systemName: "mic.fill")
                                 .padding([.leading, .trailing], 8)
                                 .foregroundColor(imageGray)
                         }.padding([.top, .bottom], 10)
+                         .frame(minHeight: 36, maxHeight: 36)
                     }.background(lightGrayOpaque)
                      .cornerRadius(10)
                     
