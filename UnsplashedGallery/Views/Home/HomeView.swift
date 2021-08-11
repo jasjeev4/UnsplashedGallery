@@ -27,8 +27,7 @@ struct HomeView: View {
                         Text("ACV Photo Challenge")
                             .font(.system(size: 17))
                             .fontWeight(.medium)
-                            .padding(.top, 20)
-                            .padding(.bottom, 10)
+                            .padding([.top, .bottom], 10)
                         
                         HStack{
                             Group{
@@ -58,13 +57,39 @@ struct HomeView: View {
                         }.background(lightGrayOpaque)
                          .cornerRadius(10)
                         
-                        ScrollView {
-                            LazyVStack(spacing: 20) {
-                                ForEach(viewModel.images) { cardImage in
-                                    CardView(cardImage: cardImage, width: geo.size.width)
+                        // show no result icon
+                        if(viewModel.images.count < 1) {
+                            HStack(alignment: .center) {
+                                Spacer()
+                                
+                                VStack(alignment: .center) {
+                                    Spacer()
+                                    
+                                    Image(systemName: "magnifyingglass.circle.fill")
+                                        .resizable()
+                                        .clipped()
+                                        .frame(width: CGFloat(200.0), height: CGFloat(200.0))
+                                        .foregroundColor(imageGray)
+                                        .padding(10)
+                                    
+                                    Text("No Images found for this search.")
+                                    Text("Try a different search.")
+                                    
+                                    Spacer()
                                 }
+                                
+                                Spacer()
                             }
-                        }.padding(.top, 10)
+                        }
+                        else {
+                            ScrollView {
+                                LazyVStack(spacing: 20) {
+                                    ForEach(viewModel.images) { cardImage in
+                                        CardView(cardImage: cardImage, width: geo.size.width)
+                                    }
+                                }
+                            }.padding(.top, 10)
+                        }
                     }
                 }
             }.popup(isPresented: $viewModel.speechPopup) {

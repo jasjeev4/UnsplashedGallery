@@ -15,7 +15,7 @@ final class UnsplashedViewModel: ObservableObject {
     @Published public var showingSheet = false
     @Published public var speechRecognizer = SpeechRecognizer()
     @Published public var transcript = ""
-    @Published public var speechPopup = true
+    @Published public var speechPopup = false
 
         
     private var baseURL = "https://api.unsplash.com/search/photos?page=1&per_page=50&client_id=" + accessKey + "&query="
