@@ -8,47 +8,10 @@
 import SwiftUI
 import URLImage
 
-struct SheetView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject  var viewModel: UnsplashedViewModel
-
-    var body: some View {
-        GeometryReader { geo in
-            VStack(spacing: 15){
-                Text(viewModel.sheetImage?.description ?? "Undefined")
-                    .font(.system(size: 17))
-                    .fontWeight(.medium)
-                    .padding(.top, 15)
-                
-                Text(viewModel.sheetImage?.displayName ?? "Undefined")
-                    .font(.system(size: 34))
-                    .fontWeight(.semibold)
-                    .padding(.leading, 16)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                ZStack{
-                    SheetImage(unsplashedImage: viewModel.sheetImage ?? UnsplashedImage(id: UUID(), imageURL: "", largeURL: "", description: "", profileImgURL: "", displayName: "", username: "", likes: 0))
-                        .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
-                        .environmentObject(viewModel)
-                }.cornerRadius(20)
-            }
-        }
-            
-//
-//        Button("Press to dismiss") {
-//            presentationMode.wrappedValue.dismiss()
-//        }
-//        .font(.title)
-//        .padding()
-//        .background(Color.black)
-    }
-}
-
 struct ContentView: View {
     @StateObject private var viewModel = UnsplashedViewModel()
     
     @State private var showingSheet = false
-    @State var searchInput: String = ""
     
     var lightGrayOpaque = Color(red: 118 / 255, green: 118 / 255, blue: 128 / 255, opacity: 0.12)
     var imageGray = Color(red: 142 / 255, green: 142 / 255, blue: 147 / 255, opacity: 1)
@@ -70,11 +33,14 @@ struct ContentView: View {
                                 .padding([.leading, .trailing], 8)
                                 .foregroundColor(imageGray)
                             
-                            TextField("Search", text: $searchInput)
-                                .onChange(of: searchInput) {
-                                    viewModel.onSearchChange($0)
-                                }
-                                .foregroundColor(searchGray)
+                            TextField("Seach", text: $viewModel.searchText, onEditingChanged: { (changed) in
+                                print("onEditingChanged - \(changed)")
+                                viewModel.executeSearch()
+                            }) {
+                                print("onCommit")
+                                viewModel.executeSearch()
+                            }
+                            .foregroundColor(searchGray)
                             
                             Image(systemName: "mic.fill")
                                 .padding([.leading, .trailing], 8)

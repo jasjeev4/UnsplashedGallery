@@ -16,7 +16,7 @@ struct SheetImage: View {
     var body: some View {
        GeometryReader { geo in
            HStack {
-                URLImage(URL(string: unsplashedImage.largeURL)!) {
+                URLImage(URL(string: unsplashedImage.imageURL)!) {
                     // This view is displayed before download starts
                     Rectangle()
                         .fill(Color.yellow)
@@ -41,7 +41,7 @@ struct SheetImage: View {
                                 image
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: geo.size.width - CGFloat(32), height: 498.0, alignment: .center)
+                                    .frame(width: geo.size.width - CGFloat(32), height: (498.0/343) * (geo.size.width - CGFloat(32)), alignment: .center)
                                     .clipped()
                                     .cornerRadius(20)
                             }
@@ -49,7 +49,7 @@ struct SheetImage: View {
                         Spacer()
                     }
                 }
-           }.frame(width: geo.size.width - CGFloat(32), height: 498.0, alignment: .center)
+           }.frame(width: geo.size.width - CGFloat(32), height: (498.0/343) * (geo.size.width - CGFloat(32)), alignment: .center)
             .padding([.leading, .trailing], 16)
        }
     }

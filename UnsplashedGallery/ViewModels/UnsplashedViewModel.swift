@@ -9,18 +9,17 @@ import Foundation
 import SwiftyJSON
 
 final class UnsplashedViewModel: ObservableObject {
+    @Published public var searchText: String = ""
     @Published public var images = [UnsplashedImage]()
     @Published public var sheetImage: UnsplashedImage?
     @Published public var showingSheet = false
     
-    private var searchText: String
     private var prevTypeTime: Double
     private var ignoreType: Bool
     
     private var baseURL = "https://api.unsplash.com/search/photos?page=1&per_page=50&client_id=" + accessKey + "&query="
     
     init() {
-        self.searchText = "Coffee"
         self.prevTypeTime = 0
         self.ignoreType = false
     }
@@ -101,9 +100,9 @@ final class UnsplashedViewModel: ObservableObject {
             shortDescription = longDescription == "" ? "Unspecifed": shortDescription
             
             // set display name
-            let first_name = imageData["user"]["first_name"].stringValue
+            let first_name = imageData["user"]["first_name"].stringValue.firstUppercased
             let last_name = imageData["user"]["last_name"].stringValue
-            let displayName = first_name + " " + String(last_name.prefix(1)) + "."
+            let displayName = first_name + " " + String(last_name.prefix(1)).uppercased() + "."
             
             // add '@' to username
             let atUsername = "@" + imageData["user"]["username"].stringValue
