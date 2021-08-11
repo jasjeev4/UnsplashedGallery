@@ -14,7 +14,7 @@ struct SheetView: View {
 
     var body: some View {
         GeometryReader { geo in
-            VStack(spacing: 5){
+            VStack(spacing: 15){
                 Text(viewModel.sheetImage?.description ?? "Undefined")
                     .font(.system(size: 17))
                     .fontWeight(.medium)
@@ -26,9 +26,11 @@ struct SheetView: View {
                     .padding(.leading, 16)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                SheetImage(unsplashedImage: viewModel.sheetImage ?? UnsplashedImage(id: UUID(), imageURL: "", description: "", profileImgURL: "", displayName: "", username: "", likes: 0))
-                    .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
-                    .environmentObject(viewModel)
+                ZStack{
+                    SheetImage(unsplashedImage: viewModel.sheetImage ?? UnsplashedImage(id: UUID(), imageURL: "", largeURL: "", description: "", profileImgURL: "", displayName: "", username: "", likes: 0))
+                        .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
+                        .environmentObject(viewModel)
+                }.cornerRadius(20)
             }
         }
             
@@ -117,10 +119,18 @@ struct ContentView: View {
                                             } content: { image in
                                                 // Downloaded image
                                                 ZStack {
+                                                    Rectangle()
+                                                        .fill(Color.white)
+                                                        .zIndex(0)
+                                                    
                                                     image
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fill)
                                                         .clipped()
+                                                        .frame(width: CGFloat(45.0), height: CGFloat(45.0))
+                                                        .cornerRadius(100)
+                                                        //.offset(x: 2, y: 2)
+                                                        .zIndex(1)
                                                 }
                                                 .cornerRadius(100)
                                                 .frame(width: CGFloat(50.0), height: CGFloat(50.0))

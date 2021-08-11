@@ -8,8 +8,9 @@
 import Foundation
 
 struct UnsplashedImage: Identifiable {
-    let id: UUID
+    var id: UUID
     var imageURL: String
+    var largeURL: String
     var description: String
     var profileImgURL: String
     var displayName: String

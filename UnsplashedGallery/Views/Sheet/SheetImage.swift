@@ -16,31 +16,41 @@ struct SheetImage: View {
     var body: some View {
        GeometryReader { geo in
            HStack {
-                URLImage(URL(string: unsplashedImage.imageURL)!) {
+                URLImage(URL(string: unsplashedImage.largeURL)!) {
                     // This view is displayed before download starts
                     Rectangle()
                         .fill(Color.yellow)
+                        .cornerRadius(20)
                 } inProgress: { progress in
                     // Display progress
                     Rectangle()
                         .fill(Color.yellow)
+                        .cornerRadius(20)
                 } failure: { error, retry in
                     // Display error and retry button
                     Rectangle()
                         .fill(Color.red)
+                        .cornerRadius(20)
                 } content: { image in
                     // Downloaded image
-                    ZStack {
-                        image
-                            .resizable()
-                            .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
-                            .aspectRatio(contentMode: .fill)
-                            .clipped()
+                    VStack {
+                        Spacer()
+                        
+                        HStack {
+                            ZStack {
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geo.size.width - CGFloat(32), height: 498.0, alignment: .center)
+                                    .clipped()
+                                    .cornerRadius(20)
+                            }
+                        }
+                        Spacer()
                     }
-                    .cornerRadius(0)
-                    .frame(width: CGFloat(geo.size.width), height: CGFloat(498.0))
                 }
-           }
+           }.frame(width: geo.size.width - CGFloat(32), height: 498.0, alignment: .center)
+            .padding([.leading, .trailing], 16)
        }
     }
 }

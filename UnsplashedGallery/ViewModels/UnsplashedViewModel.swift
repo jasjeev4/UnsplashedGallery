@@ -111,6 +111,7 @@ final class UnsplashedViewModel: ObservableObject {
             let currentImage = UnsplashedImage(
                 id: UUID(),
                 imageURL: imageData["urls"]["regular"].stringValue,
+                largeURL: imageData["urls"]["full"].stringValue,
                 description: shortDescription,
                 profileImgURL: imageData["user"]["profile_image"]["large"].stringValue,
                 displayName: displayName,
