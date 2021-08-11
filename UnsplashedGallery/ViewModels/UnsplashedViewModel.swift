@@ -13,38 +13,14 @@ final class UnsplashedViewModel: ObservableObject {
     @Published public var images = [UnsplashedImage]()
     @Published public var sheetImage: UnsplashedImage?
     @Published public var showingSheet = false
-    
-    private var prevTypeTime: Double
-    private var ignoreType: Bool
-    
+    @Published public var speechRecognizer = SpeechRecognizer()
+    @Published public var transcript = ""
+    @Published public var speechPopup = true
+
+        
     private var baseURL = "https://api.unsplash.com/search/photos?page=1&per_page=50&client_id=" + accessKey + "&query="
     
     init() {
-        self.prevTypeTime = 0
-        self.ignoreType = false
-    }
-    
-    func onSearchChange(_ text: String) {
-        searchText = text
-        prevTypeTime = Date().timeIntervalSince1970
-        checkSearchInterval(prevTypeTime)
-    }
-    
-    func checkSearchInterval(_ time: Double) {
-        // check if 1 second has gone by since the user typed
-        if ((time - prevTypeTime)>0.9) {
-            executeSearch()
-        }
-        else {
-            if(!ignoreType) {
-                ignoreType = true
-                let after = (0.9 - (time - prevTypeTime)) + 0.2
-                DispatchQueue.main.asyncAfter(deadline: .now() + after) {
-                    self.checkSearchInterval(Date().timeIntervalSince1970)
-                    self.ignoreType = false
-                }
-            }
-        }
     }
     
     func executeSearch() {
@@ -54,6 +30,22 @@ final class UnsplashedViewModel: ObservableObject {
         
         makeRequest(url)
         // fetch 20 images from unspalshed
+    }
+    
+    func beginVoice() {
+        transcript = ""
+        
+        speechPopup.toggle()
+    }
+    
+    func voiceComplete() {
+        searchText = self.transcript
+        
+        executeSearch()
+        
+        speechPopup = false
+        
+        speechRecognizer.stopRecording()
     }
     
     func makeRequest(_ stringurl: String) {

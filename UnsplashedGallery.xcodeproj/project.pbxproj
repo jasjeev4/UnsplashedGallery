@@ -12,6 +12,8 @@
 		C865DEB326C399EB00A4C73F /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865DEB226C399EB00A4C73F /* SheetView.swift */; };
 		C865DEB526C39C8D00A4C73F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865DEB426C39C8C00A4C73F /* HomeView.swift */; };
 		C865DEB726C39FDE00A4C73F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865DEB626C39FDE00A4C73F /* CardView.swift */; };
+		C865DEBA26C43E9600A4C73F /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = C865DEB926C43E9600A4C73F /* PopupView */; };
+		C865DEBC26C4405C00A4C73F /* SpeechHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865DEBB26C4405C00A4C73F /* SpeechHelper.swift */; };
 		C8DB689A26C3325600882231 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = C8DB689926C3325600882231 /* URLImageStore */; };
 		C8DB689C26C3325600882231 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = C8DB689B26C3325600882231 /* URLImage */; };
 		C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECDCAD26C2197500048B22 /* AppDelegate.swift */; };
@@ -52,6 +54,7 @@
 		C865DEB226C399EB00A4C73F /* SheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
 		C865DEB426C39C8C00A4C73F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C865DEB626C39FDE00A4C73F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C865DEBB26C4405C00A4C73F /* SpeechHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechHelper.swift; sourceTree = "<group>"; };
 		C8ECDCAA26C2197500048B22 /* UnsplashedGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashedGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8ECDCAD26C2197500048B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8ECDCAF26C2197500048B22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C865DEBA26C43E9600A4C73F /* PopupView in Frameworks */,
 				C8DB689A26C3325600882231 /* URLImageStore in Frameworks */,
 				C8DB689C26C3325600882231 /* URLImage in Frameworks */,
 				C8ECDCEF26C30C0C00048B22 /* SwiftyJSON in Frameworks */,
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				C865DEAE26C392D200A4C73F /* StringHelper.swift */,
+				C865DEBB26C4405C00A4C73F /* SpeechHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				C8ECDCEE26C30C0C00048B22 /* SwiftyJSON */,
 				C8DB689926C3325600882231 /* URLImageStore */,
 				C8DB689B26C3325600882231 /* URLImage */,
+				C865DEB926C43E9600A4C73F /* PopupView */,
 			);
 			productName = UnsplashedGallery;
 			productReference = C8ECDCAA26C2197500048B22 /* UnsplashedGallery.app */;
@@ -320,6 +326,7 @@
 			packageReferences = (
 				C8ECDCED26C30C0C00048B22 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */,
+				C865DEB826C43E9600A4C73F /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = C8ECDCAB26C2197500048B22 /* Products */;
 			projectDirPath = "";
@@ -366,6 +373,7 @@
 			files = (
 				C8ECDCF226C30C7000048B22 /* CardImage.swift in Sources */,
 				C8ECDCAE26C2197500048B22 /* AppDelegate.swift in Sources */,
+				C865DEBC26C4405C00A4C73F /* SpeechHelper.swift in Sources */,
 				C865DEB326C399EB00A4C73F /* SheetView.swift in Sources */,
 				C8ECDCB026C2197500048B22 /* SceneDelegate.swift in Sources */,
 				C865DEAF26C392D200A4C73F /* StringHelper.swift in Sources */,
@@ -706,6 +714,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C865DEB826C43E9600A4C73F /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
@@ -725,6 +741,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C865DEB926C43E9600A4C73F /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C865DEB826C43E9600A4C73F /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
 		C8DB689926C3325600882231 /* URLImageStore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C8DB689826C3325600882231 /* XCRemoteSwiftPackageReference "url-image" */;

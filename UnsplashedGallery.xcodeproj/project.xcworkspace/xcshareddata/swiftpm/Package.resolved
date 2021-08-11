@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "PopupView",
+        "repositoryURL": "https://github.com/exyte/PopupView.git",
+        "state": {
+          "branch": null,
+          "revision": "b1834668b34b9ec22dfe7c462dfbb694edc7ec2d",
+          "version": "1.0.1"
+        }
+      },
+      {
         "package": "SwiftyJSON",
         "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
         "state": {
