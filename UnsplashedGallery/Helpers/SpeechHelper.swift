@@ -43,14 +43,14 @@ struct SpeechRecognizer {
             - speech: A binding to a string where the transcription is written.
      */
     func record(to speech: Binding<String>) {
-        relay(speech, message: "Requesting access")
+        // relay(speech, message: "Requesting access")
         canAccess { authorized in
             guard authorized else {
-                relay(speech, message: "Access denied")
+                // relay(speech, message: "Access denied")
                 return
             }
 
-            relay(speech, message: "Access granted")
+            // relay(speech, message: "Access granted")
 
             assistant.audioEngine = AVAudioEngine()
             guard let audioEngine = assistant.audioEngine else {
@@ -63,19 +63,19 @@ struct SpeechRecognizer {
             recognitionRequest.shouldReportPartialResults = true
 
             do {
-                relay(speech, message: "Booting audio subsystem")
+                // relay(speech, message: "Booting audio subsystem")
 
                 let audioSession = AVAudioSession.sharedInstance()
                 try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
                 let inputNode = audioEngine.inputNode
-                relay(speech, message: "Found input node")
+                // relay(speech, message: "Found input node")
 
                 let recordingFormat = inputNode.outputFormat(forBus: 0)
                 inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
                     recognitionRequest.append(buffer)
                 }
-                relay(speech, message: "Preparing audio engine")
+                // relay(speech, message: "Preparing audio engine")
                 audioEngine.prepare()
                 try audioEngine.start()
                 assistant.recognitionTask = assistant.speechRecognizer?.recognitionTask(with: recognitionRequest) { (result, error) in

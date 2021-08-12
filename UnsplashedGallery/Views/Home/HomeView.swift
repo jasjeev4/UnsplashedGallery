@@ -94,9 +94,16 @@ struct HomeView: View {
                 }
             }.popup(isPresented: $viewModel.speechPopup) {
                 VStack() {
-                    Text(viewModel.transcript)
-                        .frame(width: geo.size.width - CGFloat(100.0), height: 60)
-                        .foregroundColor(Color.white)
+                    if(viewModel.transcript.count < 1) {
+                        Text("Say something...")
+                            .frame(width: geo.size.width - CGFloat(100.0), height: 60)
+                            .foregroundColor(Color.yellow)
+                    }
+                    else {
+                        Text(viewModel.transcript)
+                            .frame(width: geo.size.width - CGFloat(100.0), height: 60)
+                            .foregroundColor(Color.white)
+                    }
                     
                     Button("Done", action: viewModel.voiceComplete)
                         .padding([.bottom], 20)
