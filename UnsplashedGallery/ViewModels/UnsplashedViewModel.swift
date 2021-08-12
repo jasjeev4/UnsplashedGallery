@@ -26,7 +26,9 @@ final class UnsplashedViewModel: ObservableObject {
     func executeSearch() {
         print(searchText)
         
-        let url = baseURL + searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let url = baseURL + searchText
+                             .trimmingCharacters(in: .whitespacesAndNewlines)
+                             .addingPercentEncoding(withAllowedCharacters: .alphanumerics)! // URL encode search string
         
         makeRequest(url)
         // fetch 20 images from unspalshed
