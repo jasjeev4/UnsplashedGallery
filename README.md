@@ -29,7 +29,7 @@ The directories in the App and their functions are:
 
 - ViewModel - The app's viewmodel is located here 
 
-- Helpers - Contains files for • extension to Swift's string • a helper for speech recognition
+- Helpers - Contains files for • an extension to Swift's string • a helper for speech recognition • a file containing colors used by the views
 
 ## Architecture
 
