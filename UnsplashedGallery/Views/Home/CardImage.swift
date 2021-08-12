@@ -12,6 +12,7 @@ import URLImage
 struct CardImage: View {
     var unsplashedImage: UnsplashedImage
     @EnvironmentObject  var viewModel: UnsplashedViewModel
+    
 
     var body: some View {
        GeometryReader { geo in
@@ -19,11 +20,11 @@ struct CardImage: View {
                 URLImage(URL(string: unsplashedImage.imageURL)!) {
                     // This view is displayed before download starts
                     Rectangle()
-                        .fill(Color.yellow)
+                        .fill(imageGray)
                 } inProgress: { progress in
                     // Display progress
                     Rectangle()
-                        .fill(Color.yellow)
+                        .fill(imageGray)
                 } failure: { error, retry in
                     // Display error and retry button
                     Rectangle()
