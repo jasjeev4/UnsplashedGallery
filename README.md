@@ -3,6 +3,10 @@
 This project displays images from Unsplashed using the API. The app supports voice search.
 For results where the API does have description for an image the app displays "Unspecified" as the description.
 
+<p align="row">
+<img src= "https://jsanand.com/assets/img/unsplashed.gif" width="300">
+</p>
+
 ## Running the project
 
 1. For best results try to run the project in the supported environment specified at the end of the README
